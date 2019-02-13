@@ -1,2 +1,2 @@
 # auth_gaia
-labsys gaia rbac management package
+labsys gaia rbac authority management package
