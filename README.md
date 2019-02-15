@@ -7,7 +7,10 @@ inspire by [Zizaco/entrust](https://github.com/Zizaco/entrust)
 
 ```bash
 composer require "labsys/auth-gaia:1.0.x-dev"
+#生成自动加载文件
 composer dump-autoload
+#包更新
+composer update "labsys/auth-gaia"
 ```
 ## 使用说明
 1：增加provider，在config/app.php的providers数组增加如下内容：
