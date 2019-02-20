@@ -1,6 +1,6 @@
 <?php
 
-namespace Cty\ShakaAuth\Plugin;
+namespace Labsys\GaiaAuth\Plugin;
 
 use Illuminate\Support\Collection;
 

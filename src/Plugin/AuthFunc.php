@@ -1,6 +1,6 @@
 <?php
 
-namespace Cty\ShakaAuth\Plugin;
+namespace Labsys\GaiaAuth\Plugin;
 
 use DB;
 use Illuminate\Support\Facades\Config;
@@ -16,8 +16,8 @@ class AuthFunc extends AbstractPermission
     public function __construct()
     {
         parent::__construct();
-        $this->table_name = Config::get('shaka-auth.plugin.func.table');
-        $this->auth_type = Config::get('shaka-auth.plugin.func.type');
+        $this->table_name = Config::get('auth_gaia.plugin.func.table');
+        $this->auth_type = Config::get('auth_gaia.plugin.func.type');
     }
 
     /*

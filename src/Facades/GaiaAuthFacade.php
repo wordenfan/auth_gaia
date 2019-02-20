@@ -1,5 +1,5 @@
 <?php
-namespace Labsys\GaiaAuth;
+namespace Labsys\GaiaAuth\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

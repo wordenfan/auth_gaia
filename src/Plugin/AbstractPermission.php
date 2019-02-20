@@ -1,6 +1,6 @@
 <?php
 
-namespace Cty\ShakaAuth\Plugin;
+namespace Labsys\GaiaAuth\Plugin;
 
 use DB;
 use Illuminate\Support\Facades\Config;
@@ -16,8 +16,8 @@ abstract class AbstractPermission extends Model implements PluginInterface
 
     public function __construct()
     {
-        $this->menu_level = Config::get('shaka-auth.menu_level');
-        $this->base_permission_table = Config::get('shaka-auth.permissions_table');
+        $this->menu_level = Config::get('auth_gaia.menu_level');
+        $this->base_permission_table = Config::get('auth_gaia.permissions_table');
     }
 
     public function setBasePermission(Array $basePermission){
@@ -28,7 +28,9 @@ abstract class AbstractPermission extends Model implements PluginInterface
     protected function getMenuDetail($basePermissionItem){
         $return_arr = [];
         foreach($basePermissionItem as $perm){
-            $res = DB::table($this->table_name)->where('id',$perm['ref_id'])->first();
+            $condition['id'] = $perm['ref_id'];
+            $condition['status'] = 1;
+            $res = DB::table($this->table_name)->where($condition)->first();
             $return_arr[$res->id] = $res;
         }
         return $return_arr;

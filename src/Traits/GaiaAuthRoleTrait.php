@@ -126,12 +126,12 @@ trait GaiaAuthRoleTrait
 
     public function perms()
     {
-        return $this->belongsToMany(Config::get('shaka-auth.permission'), Config::get('shaka-auth.permission_role_table'));
+        return $this->belongsToMany(Config::get('auth_gaia.permission'), Config::get('auth_gaia.permission_role_table'), 'role_id' ,'permission_id');
     }
 
     public function users()
     {
-        return $this->belongsToMany(Config::get('shaka-auth.user'), Config::get('shaka-auth.role_user_table'));
+        return $this->belongsToMany(Config::get('auth_gaia.user'), Config::get('auth_gaia.role_user_table'), 'role_id', 'user_id');
     }
 
 }

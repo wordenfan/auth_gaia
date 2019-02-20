@@ -1,6 +1,6 @@
 <?php
 
-namespace Labsys\GaiaAuth;
+namespace Labsys\GaiaAuth\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +14,7 @@ class GaiaAuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/Config/config.php' => config_path('auth_gaia.php'),
+            __DIR__ . '/../Config/config.php' => config_path('auth_gaia.php'),
         ]);
     }
 
@@ -37,7 +37,7 @@ class GaiaAuthServiceProvider extends ServiceProvider
     private function mergeConfig()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/Config/config.php', 'auth_gaia'
+            __DIR__ . '/../Config/config.php', 'auth_gaia'
         );
     }
 }

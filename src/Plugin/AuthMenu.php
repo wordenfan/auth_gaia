@@ -1,6 +1,6 @@
 <?php
 
-namespace Cty\ShakaAuth\Plugin;
+namespace Labsys\GaiaAuth\Plugin;
 
 use DB;
 use Illuminate\Support\Facades\Config;
@@ -16,8 +16,8 @@ class AuthMenu extends AbstractPermission
     public function __construct()
     {
         parent::__construct();
-        $this->table_name = Config::get('shaka-auth.plugin.menu.table');
-        $this->auth_type = Config::get('shaka-auth.plugin.menu.type');
+        $this->table_name = Config::get('auth_gaia.plugin.menu.table');
+        $this->auth_type = Config::get('auth_gaia.plugin.menu.type');
     }
 
     /*

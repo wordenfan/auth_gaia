@@ -127,7 +127,7 @@ trait GaiaAuthUserTrait
 
     public function roles()
     {
-        return $this->belongsToMany(Config::get('auth_gaia.role'), Config::get('auth_gaia.role_user_table'));
+        return $this->belongsToMany(Config::get('auth_gaia.role'), Config::get('auth_gaia.role_user_table'), 'user_id', 'role_id');
     }
 
 }
