@@ -13,6 +13,7 @@ composer dump-autoload
 composer update "labsys/auth-gaia"
 ```
 ## 使用说明
+###### auth_permission_开头的表名为权限类型插件
 1：增加provider，在config/app.php的providers数组增加如下内容：
 ```bash
 Labsys\GaiaAuth\Providers\GaiaAuthServiceProvider::class
@@ -21,12 +22,25 @@ Labsys\GaiaAuth\Providers\GaiaAuthServiceProvider::class
 ```bash
 'GaiaAuth' => Labsys\GaiaAuth\Facades\GaiaAuthFacade::class,
 ```
-3：添加中间件
+3：生成config文件
+```bash
+php artisan vendor:publish
+```
+4：添加中间件
 kernel.php的$routeMiddleware增加中间件
 ```bash
-'GaiaAuth' => \Labsys\GaiaAuth\Middleware\GaiaAuth::class,
+'gaiaAuth' => \Labsys\GaiaAuth\Middleware\GaiaAuth::class
+```
+5：Model/Admin/Auth目录下增加两个trait
+```bash
+AuthPermission.php 和 AuthRole.php
+```
+6：User的Model增加traits引用
+```bash
+use Labsys\GaiaAuth\Traits\GaiaAuthUserTrait;
 ```
 
+## 使用范例
 user的调用方法
 ```bash
 $user = User::where('id',1056)->first();
