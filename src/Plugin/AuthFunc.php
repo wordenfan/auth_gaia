@@ -16,8 +16,7 @@ class AuthFunc extends AbstractPermission
     public function __construct()
     {
         parent::__construct();
-        $this->table_name = Config::get('auth_gaia.plugin.func.table');
-        $this->auth_type = Config::get('auth_gaia.plugin.func.type');
+        $this->table_name = Config::get('auth_gaia.plugin.func_table');
     }
 
     /*
@@ -27,18 +26,41 @@ class AuthFunc extends AbstractPermission
      * return Array
      */
     public function func(Array $select=[]){
-        $select = array_merge($select,['id','name','ref_id']);
+        $select = empty($select) ? ['*'] : array_merge($select,['id','level','pid']);
 
-        $return_arr = [];
+        $menuIdArr = [];
         foreach($this->base_permission as $perm){
-            $item = $perm->where('type',$this->auth_type)->select($select)->get()->toArray();
-            $res = $this->getMenuDetail($item);
-            $return_arr = $return_arr + $res;
+            $itemVal = $perm->where('status',1)->select($select)->get()->toArray();
+            $itemKey = array_column($itemVal,'id');
+            $menuIdArr = array_unique(array_merge($menuIdArr,$itemKey));
         }
 
-        $return_arr = $this->rankMenuList($return_arr,$this->menu_level);
-        return $return_arr;
+        $funcArr = DB::table($this->table_name)->whereIn('menu_id',$menuIdArr)->get()->toArray();
+        $funcArr = $this->RearrangeFuncPid($funcArr);
+//        $funcArr = $this->rankMenuList($funcArr,$this->menu_level);
+
+        return $funcArr;
     }
+
+    //重新排列pid
+    private function RearrangeFuncPid($funcArr){
+        dump($funcArr);
+        $rootNodeArr = [];
+        foreach($funcArr as $k => $item){
+            $temp = (array)$item;
+            if($temp['pid'] == 0){
+                $temp['mysqlId'] = $temp['id'];
+                $temp['pid'] = $temp['id'];
+                $rootNodeArr[] = $temp;
+                unset($funcArr[$k]);
+            }
+        }
+
+        dump($funcArr);
+        dump($rootNodeArr);
+        exit;
+    }
+
 
     /*
      * @param $mca 包含mca的数组

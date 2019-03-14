@@ -3,6 +3,7 @@
 namespace Labsys\GaiaAuth\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Labsys\GaiaAuth\Middleware\GaiaAuth;
 
 class GaiaAuthServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,15 @@ class GaiaAuthServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Config/config.php' => config_path('auth_gaia.php'),
         ]);
+
+        $this->loadMigrationsFrom(__DIR__.'/../Migration');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                FooCommand::class,
+                BarCommand::class,
+            ]);
+        }
     }
 
     /**
@@ -26,7 +36,7 @@ class GaiaAuthServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('GaiaAuth', function ($app) {
-                    return new ShakaAuthRole($app);
+                    return new GaiaAuth($app);
                 });
 
         $this->app->alias('GaiaAuth', 'Labsys\GaiaAuth\GaiaAuth');
@@ -34,10 +44,11 @@ class GaiaAuthServiceProvider extends ServiceProvider
         $this->mergeConfig();
     }
 
+    //合并
     private function mergeConfig()
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php', 'auth_gaia'
-        );
+//        $this->mergeConfigFrom(
+//            __DIR__ . '/../Config/config.php', 'auth_gaia'
+//        );
     }
 }

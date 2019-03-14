@@ -17,13 +17,13 @@ class BasePermission
 {
     use PluginTrait;
 
-    public $belongToManyArr = [];//BelongsToMany实例数组
+    public $allRolesPermArr = [];
 
     public function __construct(Array $roleList)
     {
         foreach($roleList as $role)
         {
-            $this->belongToManyArr[] = $role->perms();
+            $this->allRolesPermArr[] = $role->perms();
         }
 
         $this->init();

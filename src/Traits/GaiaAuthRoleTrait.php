@@ -114,16 +114,9 @@ trait GaiaAuthRoleTrait
         return $return_arr;
     }
 
-    /**
-     * 权限插件的连贯操作
-     * return BasePermission实例
-     */
-    public function basePermission()
-    {
-        $role_arr = is_array($this) ? $this : [$this];
-        return new BasePermission($role_arr);
-    }
-
+    /*
+    * 角色权限
+    */
     public function perms()
     {
         return $this->belongsToMany(Config::get('auth_gaia.permission'), Config::get('auth_gaia.permission_role_table'), 'role_id' ,'permission_id');

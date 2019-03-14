@@ -2,36 +2,31 @@
 /**
  * Created by PhpStorm.
  * User: benchao
- * Date: 16/11/23
+ * Date: 16/11/22
  */
 return [
     //基础表名
-    'roles_table' => 'roles',
-    'permissions_table' => 'permissions',
-    'role_user_table' => 'role_user',
-    'permission_role_table' => 'permission_role',
+    //'users_table'           => 'auth_roles',
+    'roles_table'           => 'auth_roles',
+    'permissions_table'     => 'auth_permissions',
+    'role_user_table'       => 'auth_role_user',
+    'permission_role_table' => 'auth_role_permission',
 
     //插件
     'plugin' =>[
-        'func'=>[
-            'table' => 'permission_func',
-            'type'  => 1,
-        ],
-        'menu'=>[
-            'table' => 'permission_menu',
-            'type'  => 2,
-        ],
+        'func_table' => 'auth_permission_func',
+        'menu_table' => 'auth_permissions',
     ],
 
     //Eloquent实例
-    'role' => 'APP\Models\Role',
-    'user' => 'APP\Models\User',
-    'permission' => 'APP\Models\Permission',
+    'user' => 'App\Models\Admin\Admin',
+    'role' => 'App\Models\Admin\Auth\AuthRole',
+    'permission' => 'App\Models\Admin\Auth\AuthPermission',
 
     //目录树层级
     'menu_level'=>5,
     //空间前缀
-    'namespace_prefix'=>'APP\Http\Controllers',
+    'namespace_prefix'=>'App\Http\Controllers',
 
     //白名单
     'white_list'=>[

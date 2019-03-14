@@ -16,24 +16,31 @@ class AuthMenu extends AbstractPermission
     public function __construct()
     {
         parent::__construct();
-        $this->table_name = Config::get('auth_gaia.plugin.menu.table');
-        $this->auth_type = Config::get('auth_gaia.plugin.menu.type');
+        $this->table_name = Config::get('auth_gaia.menu_table');
     }
 
-    /*
-     * @param $attr 获取的字段
-     */
+    //一维数组
     public function menu(Array $select=[]){
-        $select = array_merge($select,['id','name','ref_id']);
+        $select = empty($select) ? ['*'] : array_merge($select,['id','level','pid']);
 
-        $return_arr = [];
+        $oneDimensionalMenu = [];
         foreach($this->base_permission as $perm){
-            $item = $perm->where('type',$this->auth_type)->select($select)->get()->toArray();
-            $res = $this->getMenuDetail($item);
-            $return_arr = $return_arr + $res;
+            $itemVal = $perm->where('status',1)->select($select)->get()->toArray();
+            $itemKey = array_column($itemVal,'id');
+            $res = array_combine($itemKey,$itemVal);
+            $oneDimensionalMenu = $oneDimensionalMenu + $res;
         }
 
-        $return_arr = $this->rankMenuList($return_arr,$this->menu_level);
-        return $return_arr;
+        return array_values($oneDimensionalMenu);
     }
+
+
+    //树形排序数组
+    public function menuWithRank(Array $select=[]){
+        $originalMenu = $this->menu($select);
+        $rankMenuArr = $this->rankMenuList($originalMenu,$this->menu_level);
+
+        return $rankMenuArr;
+    }
+
 }

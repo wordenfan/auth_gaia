@@ -24,18 +24,6 @@ abstract class AbstractPermission extends Model implements PluginInterface
         $this->base_permission = $basePermission;
     }
 
-    //
-    protected function getMenuDetail($basePermissionItem){
-        $return_arr = [];
-        foreach($basePermissionItem as $perm){
-            $condition['id'] = $perm['ref_id'];
-            $condition['status'] = 1;
-            $res = DB::table($this->table_name)->where($condition)->first();
-            $return_arr[$res->id] = $res;
-        }
-        return $return_arr;
-    }
-
     /* 菜单进行目录树整理
      * @param array 待整理的以为原始目录集
      * @param int 层级 默认三级
@@ -71,5 +59,4 @@ abstract class AbstractPermission extends Model implements PluginInterface
         $level--;
         return $this->rankMenuList($final_arr,$level,$loop_child_arr);
     }
-
 }

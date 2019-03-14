@@ -65,8 +65,8 @@ trait PluginTrait
     {
         $plugin = $this->findPlugin($method);
         $plugin->setBasePermission($basePermission);
-        $callback = [$plugin, $method];
 
+        $callback = [$plugin, $method];
         return call_user_func_array($callback, $arguments);
     }
 
@@ -74,7 +74,7 @@ trait PluginTrait
     public function __call($method, array $arguments)
     {
         try {
-            return $this->invokePlugin($method, $arguments, $this->belongToManyArr);
+            return $this->invokePlugin($method, $arguments, $this->allRolesPermArr);
         } catch (Exception $e) {
             throw new Exception('Call to undefined method '. get_class($this). '::' . $method);
         }
