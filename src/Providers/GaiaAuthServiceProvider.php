@@ -17,13 +17,16 @@ class GaiaAuthServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Config/config.php' => config_path('auth_gaia.php'),
         ]);
+        $this->publishes([
+            __DIR__.'/../Migrations/' => database_path('migrations')
+        ]);
 
-        $this->loadMigrationsFrom(__DIR__.'/../Migration');
+        // $this->loadMigrationsFrom(__DIR__.'/../Migration');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                FooCommand::class,
-                BarCommand::class,
+                // FooCommand::class,
+                // BarCommand::class,
             ]);
         }
     }
