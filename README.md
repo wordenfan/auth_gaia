@@ -6,7 +6,7 @@ inspire by [Zizaco/entrust](https://github.com/Zizaco/entrust)
 ## 安装方法
 
 ```bash
-composer require "labsys/auth-gaia:1.0.x-dev"
+composer require "labsys/auth-gaia:1.x-dev"
 #生成自动加载文件
 composer dump-autoload
 #包更新
