@@ -1,4 +1,4 @@
-<?php namespace Zizaco\Entrust;
+<?php namespace Labsys\GaiaAuth\Command;
 
 /**
  * This file is part of auth-gaia,
