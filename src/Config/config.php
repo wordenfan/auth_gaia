@@ -6,11 +6,11 @@
  */
 return [
     //基础表名
-    //'users_table'           => 'auth_roles',
+    'table_prefix'          => 'dfq_',
     'roles_table'           => 'auth_roles',
     'permissions_table'     => 'auth_permissions',
     'role_user_table'       => 'auth_role_user',
-    'permission_role_table' => 'auth_role_permission',
+    'role_permission_table' => 'auth_role_permission',
 
     //插件
     'plugin' =>[

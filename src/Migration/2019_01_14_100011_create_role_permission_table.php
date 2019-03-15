@@ -13,7 +13,8 @@ class CreateRolePermissionTable extends Migration
      */
     public function up()
     {
-        Schema::create('auth_role_permission', function (Blueprint $table) {
+        $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.role_permission_table');
+        Schema::create($tableName, function (Blueprint $table) {
             $table->tinyInteger('permission_id')->unsigned()->comment('');
             $table->tinyInteger('role_id')->unsigned()->comment('');
             //
@@ -37,10 +38,10 @@ class CreateRolePermissionTable extends Migration
      */
     public function down()
     {
-        Schema::table('auth_role_permission', function(Blueprint $table){
+        Schema::table(Config::get('auth_gaia.role_permission_table'), function(Blueprint $table){
             $table->dropForeign('permission_id');
             $table->dropForeign('role_id');
         });
-        Schema::dropIfExists('auth_permissions');
+        Schema::dropIfExists(Config::get('auth_gaia.role_permission_table'));
     }
 }

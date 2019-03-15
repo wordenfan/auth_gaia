@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePermissionTable extends Migration
+class CreateRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,8 @@ class CreatePermissionTable extends Migration
      */
     public function up()
     {
-        Schema::create('auth_roles', function (Blueprint $table) {
+        $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.roles_table');
+        Schema::create($tableName, function (Blueprint $table) {
             $table->increments('id');
             $table->string('pinyin',30)->unique()->comment('拼音标识');
             $table->string('label',30)->comment('展示的名称');
@@ -30,6 +31,6 @@ class CreatePermissionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auth_roles');
+        Schema::dropIfExists(Config::get('auth_gaia.roles_table'));
     }
 }

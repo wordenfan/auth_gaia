@@ -13,7 +13,8 @@ class CreatePermissionTable extends Migration
      */
     public function up()
     {
-        Schema::create('auth_permissions', function (Blueprint $table) {
+        $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.permissions_table');
+        Schema::create($tableName, function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('type')->unsigned()->comment('1菜单2按钮3其他');
             $table->integer('pid')->comment('父id');
@@ -27,12 +28,6 @@ class CreatePermissionTable extends Migration
             $table->tinyInteger('status')->comment('状态');
             $table->integer('creator')->comment('创建人员id');
             $table->timestamps();
-            //Comment表中post_id字段作为外键，与Post一对多关系
-            $table->foreign('post_id')
-                ->references('id')
-                ->on('posts')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
         });
     }
 
@@ -43,6 +38,6 @@ class CreatePermissionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auth_permissions');
+        Schema::dropIfExists(Config::get('auth_gaia.permissions_table'));
     }
 }

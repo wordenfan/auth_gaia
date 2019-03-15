@@ -4,6 +4,7 @@ namespace Labsys\GaiaAuth\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Labsys\GaiaAuth\Middleware\GaiaAuth;
+use Labsys\GaiaAuth\Command\MigrationCommand;
 
 class GaiaAuthServiceProvider extends ServiceProvider
 {
@@ -17,15 +18,21 @@ class GaiaAuthServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Config/config.php' => config_path('auth_gaia.php'),
         ]);
+
         $this->publishes([
-            __DIR__.'/../Migrations/' => database_path('migrations')
+            __DIR__.'/../Migration/' => database_path('migrations')
+        ]);
+
+        $this->publishes([
+            __DIR__.'/../Seeds/' => database_path('seeds')
         ]);
 
         // $this->loadMigrationsFrom(__DIR__.'/../Migration');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                // FooCommand::class,
+                 MigrationCommand::class,
+//                 FooCommand::class,
                 // BarCommand::class,
             ]);
         }
