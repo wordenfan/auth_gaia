@@ -6,7 +6,7 @@ inspire by [Zizaco/entrust](https://github.com/Zizaco/entrust)
 ## 安装方法
 
 ```bash
-composer require "labsys/auth-gaia:1.x-dev"
+composer require "labsys/auth-gaia:1.0.x-dev"
 #生成自动加载文件
 composer dump-autoload
 #包更新
@@ -25,6 +25,7 @@ Labsys\GaiaAuth\Providers\GaiaAuthServiceProvider::class
 3：生成config文件
 ```bash
 php artisan vendor:publish
+php artisan migrate
 ```
 4：添加中间件
 kernel.php的$routeMiddleware增加中间件
