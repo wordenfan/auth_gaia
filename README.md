@@ -6,8 +6,6 @@ Labsys Gaia权限管理系统，参考了[Zizaco/entrust](https://github.com/Ziz
 
 ```bash
 composer require "labsys/auth-gaia:1.2.x-dev"
-#生成自动加载文件
-composer dump-autoload
 #包更新
 composer update "labsys/auth-gaia"
 ```
@@ -16,6 +14,10 @@ composer update "labsys/auth-gaia"
 ```bash
 php artisan vendor:publish
 php artisan migrate
+```
+2：生成自动加载文件填充数据
+```bash
+composer dump-autoload
 php artisan db:seed --class=PermissionBaseTableSeeder
 ```
 2：在Model/Admin/Auth目录下增加ORM实例
