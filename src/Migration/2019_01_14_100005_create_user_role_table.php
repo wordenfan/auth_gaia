@@ -13,9 +13,9 @@ class CreateUserRoleTable extends Migration
      */
     public function up()
     {
-        $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.role_user_table');
-        $foreignTableUser = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.users_table');
-        $foreignTableRole = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.roles_table');
+        $tableName = Config::get('auth_gaia.role_user_table');
+        $foreignTableUser = Config::get('auth_gaia.users_table');
+        $foreignTableRole = Config::get('auth_gaia.roles_table');
 
         Schema::create($tableName, function (Blueprint $table)use($foreignTableUser,$foreignTableRole){
             $table->integer('user_id')->unsigned()->comment('');

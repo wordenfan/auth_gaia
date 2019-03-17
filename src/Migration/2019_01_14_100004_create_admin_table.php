@@ -13,7 +13,7 @@ class CreateAdminTable extends Migration
      */
     public function up()
     {
-        $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.users_table');
+        $tableName = Config::get('auth_gaia.users_table');
         Schema::create($tableName, function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name',20)->unique()->comment('姓名');
