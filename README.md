@@ -16,6 +16,7 @@ composer update "labsys/auth-gaia"
 ```bash
 php artisan vendor:publish
 php artisan migrate
+php artisan db:seed --class=PermissionBaseTableSeeder
 ```
 2：在Model/Admin/Auth目录下增加ORM实例
 ```bash
