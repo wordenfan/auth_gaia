@@ -6,7 +6,7 @@
  */
 return [
     //基础表名
-    'users_table'           => 'auth_admins',
+    'users_table'           => 'admins',
     'roles_table'           => 'auth_roles',
     'permissions_table'     => 'auth_permissions',
     'role_user_table'       => 'auth_role_user',
