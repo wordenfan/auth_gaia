@@ -1,42 +1,28 @@
 ## 概述
 
-This is a auth_gaia for test
-inspire by [Zizaco/entrust](https://github.com/Zizaco/entrust)
+Labsys Gaia权限管理系统，参考了[Zizaco/entrust](https://github.com/Zizaco/entrust)，基于laravel5.5以上开发支持
 
 ## 安装方法
 
 ```bash
-composer require "labsys/auth-gaia:1.0.x-dev"
+composer require "labsys/auth-gaia:1.2.x-dev"
 #生成自动加载文件
 composer dump-autoload
 #包更新
 composer update "labsys/auth-gaia"
 ```
 ## 使用说明
-###### auth_permission_开头的表名为权限类型插件
-1：增加provider，在config/app.php的providers数组增加如下内容：
-```bash
-Labsys\GaiaAuth\Providers\GaiaAuthServiceProvider::class
-```
-2：增加Facade
-```bash
-'GaiaAuth' => Labsys\GaiaAuth\Facades\GaiaAuthFacade::class,
-```
-3：生成config文件
+1：生成config文件及执行文件
 ```bash
 php artisan vendor:publish
 php artisan migrate
 ```
-4：添加中间件
-kernel.php的$routeMiddleware增加中间件
+2：在Model/Admin/Auth目录下增加ORM实例
 ```bash
-'gaiaAuth' => \Labsys\GaiaAuth\Middleware\GaiaAuth::class
+AuthPermission.php
+AuthRole.php
 ```
-5：Model/Admin/Auth目录下增加两个trait
-```bash
-AuthPermission.php 和 AuthRole.php
-```
-6：User的Model增加traits引用
+3：User的Model增加traits引用
 ```bash
 use Labsys\GaiaAuth\Traits\GaiaAuthUserTrait;
 ```

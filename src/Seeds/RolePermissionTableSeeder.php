@@ -4,13 +4,7 @@ use Illuminate\Database\Seeder;
 
 class RolePermissionTableSeeder extends Seeder
 {
-    private $tableName;
 
-    //
-    public function __construct(){
-        parent::__construct();
-        $this->tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.role_permission_table');
-    }
     /**
      * Run the database seeds.
      *
@@ -18,6 +12,8 @@ class RolePermissionTableSeeder extends Seeder
      */
     public function run()
     {
+        $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.role_permission_table');
+
         $menuArr = [
             ['permission_id'=>1,'role_id'=>1],
             ['permission_id'=>2,'role_id'=>1],
@@ -42,7 +38,7 @@ class RolePermissionTableSeeder extends Seeder
 
         // DB::table(self::TableName)->truncate();
         foreach($menuArr as $k => $item){
-            DB::table($this->tableName)->insert([
+            DB::table($tableName)->insert([
                 'permission_id' => $item['permission_id'],
                 'role_id'       => $item['role_id']
             ]);

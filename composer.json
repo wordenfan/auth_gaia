@@ -15,6 +15,10 @@
             "Labsys\\GaiaAuth\\": "src/"
         }
     },
+    "require": {
+        "php": ">=7",
+        "illuminate/support": "^5.5"
+    },
     "extra": {
         "laravel": {
             "providers":[

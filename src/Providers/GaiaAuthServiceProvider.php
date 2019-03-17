@@ -32,8 +32,6 @@ class GaiaAuthServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                  MigrationCommand::class,
-//                 FooCommand::class,
-                // BarCommand::class,
             ]);
         }
     }
