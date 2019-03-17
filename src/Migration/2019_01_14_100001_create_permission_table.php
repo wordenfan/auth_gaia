@@ -15,7 +15,7 @@ class CreatePermissionTable extends Migration
     {
         $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.permissions_table');
         Schema::create($tableName, function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->tinyInteger('type')->unsigned()->comment('1菜单2按钮3其他');
             $table->integer('pid')->comment('父id');
             $table->string('name',30)->unique()->comment('拼音标识');
@@ -26,7 +26,7 @@ class CreatePermissionTable extends Migration
             $table->tinyInteger('level')->comment('级别');
             $table->integer('sort')->comment('排序');
             $table->tinyInteger('status')->comment('状态');
-            $table->integer('creator')->comment('创建人员id');
+            $table->integer('creator')->default(1)->comment('创建人员id');
             $table->timestamps();
         });
     }
