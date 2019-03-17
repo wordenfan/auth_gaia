@@ -7,6 +7,7 @@
 return [
     //基础表名
     'table_prefix'          => 'dfq_',
+    'users_table'           => 'auth_admins',
     'roles_table'           => 'auth_roles',
     'permissions_table'     => 'auth_permissions',
     'role_user_table'       => 'auth_role_user',
