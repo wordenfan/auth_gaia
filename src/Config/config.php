@@ -12,12 +12,6 @@ return [
     'role_user_table'       => 'auth_role_user',
     'role_permission_table' => 'auth_role_permission',
 
-    //插件
-    'plugin' =>[
-        'func_table' => 'auth_permission_func',
-        'menu_table' => 'auth_permissions',
-    ],
-
     //Eloquent实例
     'user' => 'App\Models\Admin\Admin',
     'role' => 'App\Models\Admin\Auth\AuthRole',

@@ -3,7 +3,7 @@
 namespace Labsys\GaiaAuth\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Labsys\GaiaAuth\Middleware\GaiaAuth;
+use Labsys\GaiaAuth\GaiaAuth;
 use Labsys\GaiaAuth\Command\MigrationCommand;
 
 class GaiaAuthServiceProvider extends ServiceProvider
@@ -27,6 +27,8 @@ class GaiaAuthServiceProvider extends ServiceProvider
             __DIR__.'/../Seeds/' => database_path('seeds')
         ]);
 
+        $this->bladeDirectives();
+
         // $this->loadMigrationsFrom(__DIR__.'/../Migration');
 
         if ($this->app->runningInConsole()) {
@@ -34,6 +36,30 @@ class GaiaAuthServiceProvider extends ServiceProvider
                  MigrationCommand::class,
             ]);
         }
+    }
+
+    /**
+     * Register the blade directives
+     *
+     * @return void
+     */
+    private function bladeDirectives()
+    {
+        if (!class_exists('\Blade')) return;
+        // Call to Entrust::hasRole
+        \Blade::directive('role', function ($expression) {
+            return "<?php if (\\GaiaAuth::hasRole({$expression})) : ?>";
+        });
+        \Blade::directive('endrole', function ($expression) {
+            return "<?php endif; // GaiaAuth::hasRole ?>";
+        });
+        // Call to Entrust::can
+        \Blade::directive('permission', function ($expression) {
+            return "<?php if (\\GaiaAuth::canDo({$expression})) : ?>";
+        });
+        \Blade::directive('endpermission', function ($expression) {
+            return "<?php endif; // GaiaAuth::can ?>";
+        });
     }
 
     /**

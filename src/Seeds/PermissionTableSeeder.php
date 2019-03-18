@@ -28,6 +28,8 @@ class PermissionTableSeeder extends Seeder
             ['id'=>9,'pid'=>0,'type'=>1,'level'=>1,'name'=>'dingdanguanli','label'=>'订单管理','url'=>'#','icon'=>'fa-shopping-cart','description'=>'','sort'=>9,'status'=>1],
             ['id'=>10,'pid'=>9,'type'=>1,'level'=>2,'name'=>'dingdanliebiao','label'=>'订单列表','url'=>'/admin/order/index','icon'=>'fa-circle-o','description'=>'','sort'=>10,'status'=>1],
             ['id'=>11,'pid'=>9,'type'=>1,'level'=>2,'name'=>'tuikuanliebiao','label'=>'退款列表','url'=>'/admin/order/refund','icon'=>'fa-circle-o','description'=>'','sort'=>11,'status'=>1],
+            ['id'=>12,'pid'=>11,'type'=>2,'level'=>3,'name'=>'tongyituikuan','label'=>'同意退款','url'=>'#','icon'=>'fa-circle-o','description'=>'','sort'=>12,'status'=>1],
+            ['id'=>13,'pid'=>11,'type'=>2,'level'=>3,'name'=>'jujuetuikuang','label'=>'拒绝退款','url'=>'#','icon'=>'fa-circle-o','description'=>'','sort'=>13,'status'=>1],
 
             //
             ['id'=>19,'pid'=>0,'type'=>1,'level'=>1,'name'=>'quanxianguanli','label'=>'权限管理','url'=>'#','icon'=>'fa-cubes','description'=>'','sort'=>19,'status'=>1],
