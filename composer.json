@@ -25,7 +25,7 @@
                 "Labsys\\GaiaAuth\\Providers\\GaiaAuthServiceProvider"
             ],
             "aliases":{
-                "GaiaAuth": "Labsys\\GaiaAuth\\Facades\\GaiaAuthFacade"
+                "GaiaAuth": "Labsys\\GaiaAuth\\Facades\\GaiaAuth"
             }
         }
     }

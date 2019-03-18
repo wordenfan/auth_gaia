@@ -38,13 +38,13 @@ trait GaiaAuthRoleTrait
     //查询该角色的所有用户 return array
     //TODO 目前暂只支持id,username
     public function userList(array $select=[]){
-        $select = array_merge($select,['id','username']);
+        $select = array_merge($select,['id','name']);
 
         $user_list = $this->users()->select($select)->get()->toArray();
 
         $return_arr = [];
         foreach($user_list as $user){
-            $return_arr[$user['id']] = $user['username'];
+            $return_arr[$user['id']] = $user['name'];
         }
 
         return $return_arr;
@@ -119,7 +119,7 @@ trait GaiaAuthRoleTrait
     */
     public function perms()
     {
-        return $this->belongsToMany(Config::get('auth_gaia.permission'), Config::get('auth_gaia.permission_role_table'), 'role_id' ,'permission_id');
+        return $this->belongsToMany(Config::get('auth_gaia.permission'), Config::get('auth_gaia.role_permission_table'), 'role_id' ,'permission_id');
     }
 
     public function users()

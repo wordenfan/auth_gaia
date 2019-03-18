@@ -7,11 +7,13 @@
 
 namespace Labsys\GaiaAuth;
 
+use Illuminate\Support\Facades\Auth;
 use Labsys\GaiaAuth\Contracts\ShakaAuthRoleInterface;
 use Labsys\GaiaAuth\Traits\GaiaAuthRoleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use League\Flysystem\Plugin\PluggableTrait;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class GaiaAuth
 {

@@ -3,7 +3,7 @@ namespace Labsys\GaiaAuth\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class GaiaAuthFacade extends Facade
+class GaiaAuth extends Facade
 {
     /**
      * Get the registered name of the component.

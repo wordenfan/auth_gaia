@@ -31,7 +31,6 @@ trait GaiaAuthUserTrait
     {
         $check_arr = is_array($attr) ? $attr : [$attr];
         $role_list = $this->roleList();
-
         foreach ($check_arr as $k=>$roleItem) {
             if(is_int($roleItem)) {
                 $res = array_key_exists($roleItem, $role_list);
@@ -119,12 +118,12 @@ trait GaiaAuthUserTrait
      */
     public function roleList(array $select=[])
     {
-        $select = array_merge($select,['id','name']);
+        $select = array_merge($select,['id','pinyin']);
 
         $role_list = $this->roles()->select($select)->get()->toArray();
         $return_arr = [];
         foreach($role_list as $role){
-            $return_arr[$role['id']] = $role['name'];
+            $return_arr[$role['id']] = $role['pinyin'];
         }
 
         return $return_arr;

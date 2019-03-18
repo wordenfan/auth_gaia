@@ -46,14 +46,14 @@ class GaiaAuthServiceProvider extends ServiceProvider
     private function bladeDirectives()
     {
         if (!class_exists('\Blade')) return;
-        // Call to Entrust::hasRole
+        // Call to GaiaAuth::hasRole
         \Blade::directive('role', function ($expression) {
             return "<?php if (\\GaiaAuth::hasRole({$expression})) : ?>";
         });
         \Blade::directive('endrole', function ($expression) {
             return "<?php endif; // GaiaAuth::hasRole ?>";
         });
-        // Call to Entrust::can
+        // Call to GaiaAuth::can
         \Blade::directive('permission', function ($expression) {
             return "<?php if (\\GaiaAuth::canDo({$expression})) : ?>";
         });
@@ -73,7 +73,7 @@ class GaiaAuthServiceProvider extends ServiceProvider
                     return new GaiaAuth($app);
                 });
 
-        $this->app->alias('GaiaAuth', 'Labsys\GaiaAuth\GaiaAuth');
+        $this->app->alias('GaiaAuth', 'Labsys\GaiaAuth\Facades\GaiaAuth');
 
         $this->mergeConfig();
     }
