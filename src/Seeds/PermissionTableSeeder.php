@@ -53,8 +53,8 @@ class PermissionTableSeeder extends Seeder
 
             ['id'=>36,'pid'=>19,'type'=>1,'level'=>2,'name'=>'jiedianguanli','label'=>'节点管理','url'=>'/admin/auth/nodeIndex','icon'=>'fa-circle-o','description'=>'','sort'=>22,'status'=>1],
             ['id'=>37,'pid'=>36,'type'=>2,'level'=>2,'name'=>'jdgl_ttxj','label'=>'添加下级','url'=>'#','icon'=>'','description'=>'','sort'=>1,'status'=>1],
-            ['id'=>37,'pid'=>36,'type'=>2,'level'=>2,'name'=>'jdgl_sc','label'=>'删除','url'=>'#','icon'=>'','description'=>'','sort'=>1,'status'=>1],
-            ['id'=>37,'pid'=>36,'type'=>2,'level'=>2,'name'=>'jdgl_bj','label'=>'编辑','url'=>'#','icon'=>'','description'=>'','sort'=>1,'status'=>1],
+            ['id'=>38,'pid'=>36,'type'=>2,'level'=>2,'name'=>'jdgl_sc','label'=>'删除','url'=>'#','icon'=>'','description'=>'','sort'=>1,'status'=>1],
+            ['id'=>39,'pid'=>36,'type'=>2,'level'=>2,'name'=>'jdgl_bj','label'=>'编辑','url'=>'#','icon'=>'','description'=>'','sort'=>1,'status'=>1],
 
         ];
 
