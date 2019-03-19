@@ -1,6 +1,6 @@
 {
     "name": "labsys/auth-gaia",
-    "description": "labsys gaia rbac management package",
+    "description": "labsys gaia RBAC management package",
     "license": "MIT",
     "authors": [
         {
@@ -9,10 +9,23 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
     "autoload": {
         "psr-4": {
             "Labsys\\GaiaAuth\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7",
+        "illuminate/support": "^5.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers":[
+                "Labsys\\GaiaAuth\\Providers\\GaiaAuthServiceProvider"
+            ],
+            "aliases":{
+                "GaiaAuth": "Labsys\\GaiaAuth\\Facades\\GaiaAuth"
+            }
         }
     }
 }
