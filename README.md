@@ -29,8 +29,21 @@ AuthRole.php
 ```bash
 use Labsys\GaiaAuth\Traits\GaiaAuthUserTrait;
 ```
+## Blade模板的使用
+@role('chaojiguanliyuan')
+<p>This is visible to users with the 超级管理员 role</p>
+@endrole
+@permission('tongyituikuan')
+<p>This is visible to users with the 同意退款 permission</p>
+@endpermission
 
-## 使用范例
+## Controller使用范例
+Facade调用
+```bash
+GaiaAuth::hasRole('chaojiguanliyuan');//当前系统登录用户
+GaiaAuth::canDo('tongyituikuan');//当前系统登录用户
+```
+
 user的调用方法
 ```bash
 $user = User::where('id',1056)->first();

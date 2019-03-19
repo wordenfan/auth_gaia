@@ -9,7 +9,6 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
     "autoload": {
         "psr-4": {
             "Labsys\\GaiaAuth\\": "src/"
