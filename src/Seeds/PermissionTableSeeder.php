@@ -17,8 +17,8 @@ class PermissionTableSeeder extends Seeder
         $menuArr = [
             ['id'=>1,'pid'=>0,'type'=>1,'level'=>1,'name'=>'jigouguanli','label'=>'机构管理','url'=>'/admin/hospital/index','icon'=>'fa-hospital-o','description'=>'','sort'=>1,'status'=>1],
             ['id'=>2,'pid'=>0,'type'=>1,'level'=>1,'name'=>'yishiguanli','label'=>'医师管理','url'=>'/admin/doctor/index','icon'=>'fa-male','description'=>'','sort'=>2,'status'=>1],
-            ['id'=>3,'pid'=>0,'type'=>1,'level'=>1,'name'=>'yonghuguanli','label'=>'用户管理','url'=>'/admin/doctor/index','icon'=>'fa-user','description'=>'','sort'=>3,'status'=>1],
-            ['id'=>4,'pid'=>0,'type'=>1,'level'=>1,'name'=>'tieziguanli','label'=>'帖子管理','url'=>'/admin/doctor/index','icon'=>'fa-file-text','description'=>'','sort'=>4,'status'=>1],
+            ['id'=>3,'pid'=>0,'type'=>1,'level'=>1,'name'=>'yonghuguanli','label'=>'用户管理','url'=>'/admin/user/index','icon'=>'fa-user','description'=>'','sort'=>3,'status'=>1],
+            ['id'=>4,'pid'=>0,'type'=>1,'level'=>1,'name'=>'tieziguanli','label'=>'帖子管理','url'=>'/admin/topic/index','icon'=>'fa-file-text','description'=>'','sort'=>4,'status'=>1],
             ['id'=>5,'pid'=>0,'type'=>1,'level'=>1,'name'=>'fankuiguanli','label'=>'反馈管理','url'=>'/admin/feedback/index','icon'=>'fa-medkit','description'=>'','sort'=>5,'status'=>1],
             ['id'=>6,'pid'=>0,'type'=>1,'level'=>1,'name'=>'xitongshezhi','label'=>'系统设置','url'=>'#','icon'=>'fa-gears','description'=>'','sort'=>6,'status'=>1],
             ['id'=>7,'pid'=>6,'type'=>1,'level'=>2,'name'=>'shouyehuandengpian','label'=>'首页幻灯片','url'=>'/admin/slide/index','icon'=>'fa-circle-o','description'=>'','sort'=>7,'status'=>1],

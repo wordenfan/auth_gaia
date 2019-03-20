@@ -168,7 +168,7 @@ trait GaiaAuthUserTrait
         $select = empty($select) ? ['*'] : array_merge($select,['id','type','level','pid']);
         $oneDimensionalMenu = [];
         foreach($allRolesPermArr as $perm){
-            $itemVal = $perm->where(['status'=>1])->select($select)->get()->toArray();
+            $itemVal = $perm->where(['status'=>1])->select($select)->orderBy('sort','asc')->get()->toArray();
             $itemKey = array_column($itemVal,'id');
             $res = array_combine($itemKey,$itemVal);
             $oneDimensionalMenu = $oneDimensionalMenu + $res;
