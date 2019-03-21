@@ -178,39 +178,19 @@ trait GaiaAuthUserTrait
         return $allPermArr;
     }
 
-    /* 菜单进行目录树整理
-     * @param array 待整理的以为原始目录集
-     * @param int 层级 默认三级
-     * $param array 不需传递,递归时调用
-     * return array
-     */
-    private function rankMenuList($originArr,$level=3,$child_arr=[])
+    //菜单进行目录树整理
+    private function rankMenuList($originArr,$pid)
     {
-        if($level < 1){
-            return $originArr;
-        }
-
-        $loop_child_arr = [];
-        $final_arr = [];
-        foreach($originArr as $i=>$item){
-            $item = (array)$item;
-            if($item['level'] == $level){
-                if(!empty($child_arr)){
-                    foreach($child_arr as $j=>$cItem){
-                        if($item['id'] == $cItem['pid']){
-                            $item['list'][] = $cItem;
-                        }
-                    }
+        $tree = array();                                //每次都声明一个新数组用来放子元素
+        foreach ($originArr as $v) {
+            if ($v['pid'] == $pid) {                      //匹配子记录
+                $v['list'] = $this->rankMenuList($originArr, $v['id']); //递归获取子记录
+                if ($v['list'] == null) {
+                    unset($v['list']);             //如果子元素为空则unset()进行删除，说明已经到该分支的最后一个元素了（可选）
                 }
-                $loop_child_arr[] = $item;
-            }
-            if($item['level']<=$level){
-                $final_arr[] = $item;
+                $tree[] = $v;                           //将记录存入新数组
             }
         }
-
-        rsort($loop_child_arr);
-        $level--;
-        return $this->rankMenuList($final_arr,$level,$loop_child_arr);
+        return $tree;
     }
 }

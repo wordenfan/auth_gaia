@@ -23,7 +23,6 @@ class CreatePermissionTable extends Migration
             $table->string('description', 60)->comment('概要');
             $table->string('icon', 20)->comment('adminlte图标');
             $table->string('url', 60)->default('#')->comment('url链接,非页面类可为空');
-            $table->tinyInteger('level')->default(1)->comment('级别');
             $table->integer('sort')->default(1)->comment('排序');
             $table->tinyInteger('status')->default(1)->comment('状态');
             $table->integer('creator')->default(0)->comment('创建人员id');
