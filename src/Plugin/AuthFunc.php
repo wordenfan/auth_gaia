@@ -37,7 +37,6 @@ class AuthFunc extends AbstractPermission
 
         $funcArr = DB::table($this->table_name)->whereIn('menu_id',$menuIdArr)->get()->toArray();
         $funcArr = $this->RearrangeFuncPid($funcArr);
-//        $funcArr = $this->rankMenuList($funcArr,$this->menu_level);
 
         return $funcArr;
     }
