@@ -17,8 +17,6 @@ return [
     'role' => 'App\Models\Admin\Auth\AuthRole',
     'permission' => 'App\Models\Admin\Auth\AuthPermission',
 
-    //目录树层级
-    'menu_level'=>5,
     //空间前缀
     'namespace_prefix'=>'App\Http\Controllers',
 

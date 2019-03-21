@@ -34,13 +34,4 @@ class AuthMenu extends AbstractPermission
         return array_values($oneDimensionalMenu);
     }
 
-
-    //树形排序数组
-    public function menuWithRank(Array $select=[]){
-        $originalMenu = $this->menu($select);
-        $rankMenuArr = $this->rankMenuList($originalMenu,$this->menu_level);
-
-        return $rankMenuArr;
-    }
-
 }

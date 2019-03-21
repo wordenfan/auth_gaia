@@ -16,8 +16,8 @@ class CreateRoleTable extends Migration
         $tableName = Config::get('auth_gaia.roles_table');
         Schema::create($tableName, function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('pinyin',30)->unique()->comment('拼音标识');
             $table->string('label',30)->comment('展示的名称');
+            $table->string('pinyin',30)->unique()->comment('拼音标识');
             $table->string('description',60)->comment('概要');
             $table->tinyInteger('status')->comment('状态');
             $table->timestamps();

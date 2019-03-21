@@ -16,7 +16,6 @@ abstract class AbstractPermission extends Model implements PluginInterface
 
     public function __construct()
     {
-        $this->menu_level = Config::get('auth_gaia.menu_level');
         $this->base_permission_table = Config::get('auth_gaia.permissions_table');
     }
 
