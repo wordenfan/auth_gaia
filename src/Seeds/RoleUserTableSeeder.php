@@ -14,7 +14,8 @@ class RoleUserTableSeeder extends Seeder
         $tableName = Config::get('auth_gaia.role_user_table');
         $menuArr = [
             ['user_id'=>1,'role_id'=>1],
-            ['user_id'=>1,'role_id'=>2],
+            ['user_id'=>2,'role_id'=>1],
+            ['user_id'=>3,'role_id'=>2],
         ];
 
         // DB::table(self::TableName)->truncate();

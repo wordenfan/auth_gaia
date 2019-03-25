@@ -24,6 +24,7 @@ class PermissionTableSeeder extends Seeder
             ['id'=>7,'pid'=>6,'type'=>1,'name'=>'shouyehuandengpian','label'=>'首页幻灯片','url'=>'/admin/slide/index','icon'=>'fa-circle-o','description'=>'','sort'=>7,'status'=>1],
             ['id'=>8,'pid'=>6,'type'=>1,'name'=>'shouyetongzhi','label'=>'首页通知','url'=>'/admin/notice/index','icon'=>'fa-circle-o','description'=>'','sort'=>8,'status'=>1],
 
+
             //订单
             ['id'=>9,'pid'=>0,'type'=>1,'name'=>'dingdanguanli','label'=>'订单管理','url'=>'#','icon'=>'fa-shopping-cart','description'=>'','sort'=>9,'status'=>1],
             ['id'=>10,'pid'=>9,'type'=>1,'name'=>'dingdanliebiao','label'=>'订单列表','url'=>'/admin/order/index','icon'=>'fa-circle-o','description'=>'','sort'=>10,'status'=>1],
@@ -34,6 +35,7 @@ class PermissionTableSeeder extends Seeder
             ['id'=>16,'pid'=>15,'type'=>2,'name'=>'tklb_tytk','label'=>'同意退款','url'=>'#','icon'=>'','description'=>'','sort'=>12,'status'=>1],
             ['id'=>17,'pid'=>15,'type'=>2,'name'=>'tklb_jjtk','label'=>'拒绝退款','url'=>'#','icon'=>'','description'=>'','sort'=>13,'status'=>1],
             ['id'=>18,'pid'=>15,'type'=>2,'name'=>'tklb_ss','label'=>'搜索','url'=>'#','icon'=>'','description'=>'','sort'=>13,'status'=>1],
+
 
             //权限==========
             ['id'=>19,'pid'=>0,'type'=>1,'name'=>'quanxianguanli','label'=>'权限管理','url'=>'#','icon'=>'fa-cubes','description'=>'','sort'=>19,'status'=>1],
@@ -55,6 +57,12 @@ class PermissionTableSeeder extends Seeder
             ['id'=>37,'pid'=>36,'type'=>2,'name'=>'jdgl_ttxj','label'=>'添加下级','url'=>'#','icon'=>'','description'=>'','sort'=>1,'status'=>1],
             ['id'=>38,'pid'=>36,'type'=>2,'name'=>'jdgl_sc','label'=>'删除','url'=>'#','icon'=>'','description'=>'','sort'=>1,'status'=>1],
             ['id'=>39,'pid'=>36,'type'=>2,'name'=>'jdgl_bj','label'=>'编辑','url'=>'#','icon'=>'','description'=>'','sort'=>1,'status'=>1],
+
+            //商家
+            ['id'=>40,'pid'=>0,'type'=>1,'name'=>'shangchengguanli','label'=>'商城管理','url'=>'#','icon'=>'fa-briefcase','description'=>'','sort'=>4,'status'=>1],
+            ['id'=>41,'pid'=>40,'type'=>1,'name'=>'shangpinliebiao','label'=>'商品列表','url'=>'/admin/good/index','icon'=>'fa-table','description'=>'','sort'=>1,'status'=>1],
+            ['id'=>42,'pid'=>40,'type'=>1,'name'=>'shangpinfenlei','label'=>'商品分类','url'=>'/admin/GoodCat/index','icon'=>'fa-list','description'=>'','sort'=>2,'status'=>1],
+            ['id'=>43,'pid'=>40,'type'=>1,'name'=>'shopad','label'=>'商城幻灯片','url'=>'/admin/shopad/index','icon'=>' fa-life-saver','description'=>'','sort'=>3,'status'=>1],
 
         ];
 

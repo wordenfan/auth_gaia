@@ -49,7 +49,12 @@ class RolePermissionTableSeeder extends Seeder
             ['permission_id'=>37,'role_id'=>1],
             ['permission_id'=>38,'role_id'=>1],
             ['permission_id'=>39,'role_id'=>1],
+            ['permission_id'=>40,'role_id'=>1],
+            ['permission_id'=>41,'role_id'=>1],
+            ['permission_id'=>42,'role_id'=>1],
+            ['permission_id'=>43,'role_id'=>1],
 
+            //
             ['permission_id'=>1,'role_id'=>2],
             ['permission_id'=>2,'role_id'=>2],
             ['permission_id'=>3,'role_id'=>2],
@@ -58,6 +63,20 @@ class RolePermissionTableSeeder extends Seeder
             ['permission_id'=>6,'role_id'=>2],
             ['permission_id'=>7,'role_id'=>2],
             ['permission_id'=>8,'role_id'=>2],
+            ['permission_id'=>9,'role_id'=>2],
+            ['permission_id'=>10,'role_id'=>2],
+            ['permission_id'=>11,'role_id'=>2],
+            ['permission_id'=>12,'role_id'=>2],
+            ['permission_id'=>15,'role_id'=>2],
+            ['permission_id'=>16,'role_id'=>2],
+            ['permission_id'=>17,'role_id'=>2],
+            ['permission_id'=>18,'role_id'=>2],
+
+            ['permission_id'=>40,'role_id'=>2],
+            ['permission_id'=>41,'role_id'=>2],
+            ['permission_id'=>42,'role_id'=>2],
+            ['permission_id'=>43,'role_id'=>2],
+
         ];
 
         // DB::table(self::TableName)->truncate();

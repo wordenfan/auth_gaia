@@ -17,6 +17,7 @@ class AdminTableSeeder extends Seeder
         $menuArr = [
             ['id'=>1,'name'=>'admin','password'=>bcrypt('123456'),'email'=>'','avatar'=>'','remember_token'=>'','status'=>1],
             ['id'=>2,'name'=>'15577901841','password'=>bcrypt('15577901841'),'email'=>'','avatar'=>'','remember_token'=>'','status'=>1],
+            ['id'=>3,'name'=>'lxadmin','password'=>bcrypt('lxadmin2018'),'email'=>'','avatar'=>'','remember_token'=>'','status'=>1],
         ];
 
         // DB::table(self::TableName)->truncate();
