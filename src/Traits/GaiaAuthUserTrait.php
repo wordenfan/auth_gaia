@@ -147,7 +147,7 @@ trait GaiaAuthUserTrait
         $menuPermArr = array_filter($menuPermArr);
 
         if($rank){
-            $rankMenuArr = $this->rankMenuList($menuPermArr);
+            $rankMenuArr = $this->rankMenuList($menuPermArr,0);
             $menuPermArr = $rankMenuArr;
         }
 
