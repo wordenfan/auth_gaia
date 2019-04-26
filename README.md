@@ -33,9 +33,12 @@ use Labsys\GaiaAuth\Traits\GaiaAuthUserTrait;
 @role('chaojiguanliyuan')
 <p>This is visible to users with the 超级管理员 role</p>
 @endrole
+
 @permission('tongyituikuan')
 <p>This is visible to users with the 同意退款 permission</p>
 @endpermission
+
+<button @nopermission('ddlb_ss') disabled=true @endnopermission >搜索< /button>
 
 ## Controller使用范例
 Facade调用

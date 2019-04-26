@@ -51,14 +51,21 @@ class GaiaAuthServiceProvider extends ServiceProvider
             return "<?php if (\\GaiaAuth::hasRole({$expression})) : ?>";
         });
         \Blade::directive('endrole', function ($expression) {
-            return "<?php endif; // GaiaAuth::hasRole ?>";
+            return "<?php endif; ?>";
         });
         // Call to GaiaAuth::can
         \Blade::directive('permission', function ($expression) {
             return "<?php if (\\GaiaAuth::canDo({$expression})) : ?>";
         });
         \Blade::directive('endpermission', function ($expression) {
-            return "<?php endif; // GaiaAuth::can ?>";
+            return "<?php endif; ?>";
+        });
+        //
+        \Blade::directive('nopermission', function ($expression) {
+            return "<?php if (! \\GaiaAuth::canDo({$expression})) : ?>";
+        });
+        \Blade::directive('endnopermission', function ($expression) {
+            return "<?php endif;?>";
         });
     }
 
