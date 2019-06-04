@@ -1,3 +1,4 @@
+[![License](https://poser.pugx.org/zizaco/entrust/license.svg)](https://packagist.org/packages/labsys/auth-gaia)
 ## 概述
 
 Labsys Gaia权限管理系统，参考了[Zizaco/entrust](https://github.com/Zizaco/entrust)，基于laravel5.5以上开发支持
@@ -30,6 +31,7 @@ AuthRole.php
 use Labsys\GaiaAuth\Traits\GaiaAuthUserTrait;
 ```
 ## Blade模板的使用
+```bash
 @role('chaojiguanliyuan')
 <p>This is visible to users with the 超级管理员 role</p>
 @endrole
@@ -39,7 +41,7 @@ use Labsys\GaiaAuth\Traits\GaiaAuthUserTrait;
 @endpermission
 
 <button @nopermission('ddlb_ss') disabled=true @endnopermission >搜索< /button>
-
+```
 ## Controller使用范例
 Facade调用
 ```bash
