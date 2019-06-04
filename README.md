@@ -1,3 +1,4 @@
+[![Version](https://img.shields.io/badge/worden-auth--gaia-brightgreen.svg)](https://packagist.org/packages/labsys/auth-gaia)
 [![License](https://poser.pugx.org/zizaco/entrust/license.svg)](https://packagist.org/packages/labsys/auth-gaia)
 ## 概述
 
