@@ -3,7 +3,6 @@
 namespace Labsys\GaiaAuth\Traits;
 
 use Illuminate\Support\Facades\DB;
-use Labsys\GaiaAuth\BasePermission;
 use Labsys\GaiaAuth\Plugin\PluginInterface;
 use APP\Models\Role;
 use Illuminate\Support\Facades\Config;
@@ -20,7 +19,6 @@ use Exception;
 
 trait GaiaAuthUserTrait
 {
-
     /*
      * 校验是否有某个角色或全部角色
      * @param array|int
@@ -46,22 +44,6 @@ trait GaiaAuthUserTrait
             }
         }
         return $requireAll ? true : false;
-    }
-
-    /* 校验是否具备某个权限
-     * @param int|string|array 支持id或name的单个 或数组形式
-     * return bool
-     */
-    public function canDo($permission_name)
-    {
-        $role_list = $this->roles()->get();
-        foreach($role_list as $role){
-            $chk_res = $role->hasPermission($permission_name);
-            if($chk_res){
-                return true;
-            }
-        }
-        return false;
     }
 
     /*
@@ -129,12 +111,20 @@ trait GaiaAuthUserTrait
         return $return_arr;
     }
 
-    /*
-     * 用户全部角色
-    */
-    public function roles()
+    /* 校验是否具备某个权限
+     * @param int|string|array 支持id或name的单个 或数组形式
+     * return bool
+     */
+    public function canDo($permission_name)
     {
-        return $this->belongsToMany(Config::get('auth_gaia.role'), Config::get('auth_gaia.role_user_table'), 'user_id', 'role_id');
+        $role_list = $this->roles()->get();
+        foreach($role_list as $role){
+            $chk_res = $role->hasPermission($permission_name);
+            if($chk_res){
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
@@ -154,10 +144,14 @@ trait GaiaAuthUserTrait
         return $menuPermArr;
     }
 
-    /*
-     * 返回全部权限数据
-    */
-    public function allPerm(Array $select=[]){
+    //用户全部角色
+    private function roles()
+    {
+        return $this->belongsToMany(Config::get('auth_gaia.role'), Config::get('auth_gaia.role_user_table'), 'user_id', 'role_id');
+    }
+
+    //返回全部权限数据
+    private function allPerm(Array $select=[]){
         $roleList = $this->roles()->select(['*'])->get()->all();
         $allRolesPermArr = [];
         foreach($roleList as $role)

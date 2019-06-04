@@ -43,28 +43,27 @@ use Labsys\GaiaAuth\Traits\GaiaAuthUserTrait;
 ## Controller使用范例
 Facade调用
 ```bash
-GaiaAuth::hasRole('chaojiguanliyuan');//当前系统登录用户
-GaiaAuth::canDo('tongyituikuan');//当前系统登录用户
+$res1 = GaiaAuth::hasRole([1,2]);
+$res2 = GaiaAuth::canDo([11,'search_bt']);
+$res3 = GaiaAuth::user();//返回对象
 ```
 
 user的调用方法
 ```bash
-$user = User::where('id',1056)->first();
-$res = $user->roleList();
-$res = $user->hasRole([25,26]);
-$res = $user->attachRole(27);
-$res = $user->detachRole(27);
-$res = $user->canDo([12,'manage_posts3']);
-$res = $user->basePermission()->menu();
-$res = $user->basePermission()->func();
+$user = Admin::where('name','15577901841')->first();
+$res1 = $user->roleList();
+$res2 = $user->hasRole([1,2]);//默认任一角色匹配即返回true,参数二全匹配默认值为false
+$res3 = $user->attachRole(4);
+$res4 = $user->detachRole(4);
+$res5 = $user->canDo([11,'search_bt']);//id或pinyin混合查找
+$res6 = $user->menuPermList();//返回全部权限二维数组,参数一筛选需显示的字段,默认为[],参数二是否需树形排序,默认为true
 ```
 role的调用方法
 ```bash
-$role = Role::where('id',25)->first();
-$res2 = $role->attachPermission(17);
-$res2 = $role->detachPermission([18]);
-$res2 = $role->userList();
-$res2 = $role->hasPermission(['manage_posts2','manage_posts3']);
-$res2 = $role->permissionList();
-$res2 = $role->basePermission()->menu();
+$role = AuthRole::where('id',2)->first();
+$res2 = $role->userList();//返回用户数组
+$res3 = $role->hasPermission(['shopad','ddlb_hx2']);//支持数组批量查询,仅全匹配才返回true
+$res4 = $role->attachPermission([43,45]);//支持单个或数组批量添加
+$res5 = $role->detachPermission(43);//支持单个或数组批量添加
+$res6 = $role->permissionList();//返回一维数组
 ```
