@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AdminTableSeeder extends Seeder
+class AdminUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,8 @@ class AdminTableSeeder extends Seeder
         $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.users_table');
 
         $menuArr = [
-            ['id'=>1,'name'=>'admin','password'=>bcrypt('123456'),'email'=>'','avatar'=>'','remember_token'=>'','status'=>1],
-            ['id'=>2,'name'=>'15577901841','password'=>bcrypt('15577901841'),'email'=>'','avatar'=>'','remember_token'=>'','status'=>1],
-            ['id'=>3,'name'=>'lxadmin','password'=>bcrypt('lxadmin2018'),'email'=>'','avatar'=>'','remember_token'=>'','status'=>1],
+            ['id'=>1,'name'=>'lxadmin','password'=>bcrypt('lxadminLX'),'email'=>'','avatar'=>'','remember_token'=>'','status'=>1],
+            ['id'=>2,'name'=>'lxtest','password'=>bcrypt('lxtestLX'),'email'=>'','avatar'=>'','remember_token'=>'','status'=>1],
         ];
 
         // DB::table(self::TableName)->truncate();

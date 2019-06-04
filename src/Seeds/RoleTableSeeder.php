@@ -14,7 +14,7 @@ class RoleTableSeeder extends Seeder
         $tableName = Config::get('auth_gaia.roles_table');
         $menuArr = [
             ['id'=>1,'pinyin'=>'chaojiguanliyuan','label'=>'超级管理员A','description'=>'所有权限','status'=>1],
-            ['id'=>2,'pinyin'=>'putongguanliyuan','label'=>'运营管理员B','description'=>'大部分权限','status'=>1],
+            ['id'=>2,'pinyin'=>'ceshiguanliyuan','label'=>'测试管理员B','description'=>'测试权限','status'=>1],
         ];
 
         // DB::table(self::TableName)->truncate();

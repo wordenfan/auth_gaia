@@ -17,7 +17,7 @@ class PermissionBaseTableSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(AdminTableSeeder::class);
+        $this->call(AdminUserTableSeeder::class);
         $this->call(PermissionTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(RolePermissionTableSeeder::class);
