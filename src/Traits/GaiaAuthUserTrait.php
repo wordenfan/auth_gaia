@@ -133,7 +133,13 @@ trait GaiaAuthUserTrait
     */
     public function menuPermList(Array $select=[],$rank=true){
         $allPermArr = $this->allPerm($select);
-        $menuPermArr = array_map(function($item){if($item['type'] == 1){return $item;}},$allPermArr);
+        $menuPermArr = [];
+        foreach($allPermArr as $k => $item){
+            if($item['type'] == 1){
+                unset($item['pivot']);
+                $menuPermArr[] = $item;
+            }
+        }
         $menuPermArr = array_filter($menuPermArr);
 
         if($rank){
@@ -159,7 +165,7 @@ trait GaiaAuthUserTrait
             $allRolesPermArr[] = $role->perms();
         }
 
-        $select = empty($select) ? ['*'] : array_merge($select,['id','type','level','pid']);
+        $select = empty($select) ? ['*'] : array_merge($select,['id','type','pid']);
         $oneDimensionalMenu = [];
         foreach($allRolesPermArr as $perm){
             $itemVal = $perm->where(['status'=>1])->select($select)->orderBy('sort','asc')->get()->toArray();
