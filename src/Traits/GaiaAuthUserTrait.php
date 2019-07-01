@@ -33,7 +33,8 @@ trait GaiaAuthUserTrait
             if(is_int($roleItem)) {
                 $res = array_key_exists($roleItem, $role_list);
             }else{
-                $res = in_array($roleItem,$role_list);
+                $pinyinArr = array_values(array_column($role_list,'pinyin'));
+                $res = in_array($roleItem,$pinyinArr);
             }
             $result_arr[] = $res;
 
@@ -96,18 +97,16 @@ trait GaiaAuthUserTrait
      * 角色列表
      * @param array
      * return array
-     * TODO 目前暂只支持id,name
      */
-    public function roleList(array $select=[])
+    public function roleList()
     {
-        $select = array_merge($select,['id','pinyin']);
+        $select = ['id','pinyin','label'];
 
         $role_list = $this->roles()->select($select)->get()->toArray();
         $return_arr = [];
         foreach($role_list as $role){
-            $return_arr[$role['id']] = $role['pinyin'];
+            $return_arr[$role['id']] = ['pinyin'=>$role['pinyin'],'label'=>$role['label']];
         }
-
         return $return_arr;
     }
 
@@ -133,6 +132,7 @@ trait GaiaAuthUserTrait
     */
     public function menuPermList(Array $select=[],$rank=true){
         $allPermArr = $this->allPerm($select);
+
         $menuPermArr = [];
         foreach($allPermArr as $k => $item){
             if($item['type'] == 1){
