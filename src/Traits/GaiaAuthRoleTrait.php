@@ -77,12 +77,12 @@ trait GaiaAuthRoleTrait
     */
     public function permissionList(array $select=[])
     {
-        $select = array_merge($select,['id','name']);
+        $select = array_merge($select,['id','pinyin']);
         $permission_list = $this->perms()->select($select)->get()->toArray();
 
         $return_arr = [];
         foreach($permission_list as $perm){
-            $return_arr[$perm['id']] = $perm['name'];
+            $return_arr[$perm['id']] = $perm['pinyin'];
         }
 
         return $return_arr;

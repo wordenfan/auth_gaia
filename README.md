@@ -4,32 +4,35 @@
 
 Labsys Gaia权限管理系统，参考了[Zizaco/entrust](https://github.com/Zizaco/entrust)，基于laravel5.5以上开发支持
 
-## 安装方法
+## 包安装
 
 ```bash
+# 1：下载包
 composer require "labsys/auth-gaia:1.2.x-dev"
 #包更新
 composer update "labsys/auth-gaia"
-```
-## 使用说明
-1：生成config文件及执行文件
-```bash
+
+# 2：生成config文件及执行文件
 php artisan vendor:publish
 php artisan migrate
-```
-2：生成自动加载文件填充数据
-```bash
+
+# 3：生成自动加载文件和填充数据
 composer dump-autoload
 php artisan db:seed --class=PermissionBaseTableSeeder
 ```
-2：在Model/Admin/Auth目录下增加ORM实例
+## 使用说明
 ```bash
+# 1：在Model/Admin/Auth目录下增加ORM实例
 AuthPermission.php
 AuthRole.php
-```
-3：User的Model增加traits引用
-```bash
+
+# 2：增加traits引用
+# AdminUser的引用
 use Labsys\GaiaAuth\Traits\GaiaAuthUserTrait;
+# AuthRole的引用
+use GaiaAuthRoleTrait;
+# AuthPermission的引用
+use GaiaAuthPermissionTrait;
 ```
 ## Blade模板的使用
 ```bash
