@@ -8,37 +8,24 @@
 namespace Labsys\GaiaAuth;
 
 use Illuminate\Support\Facades\Auth;
-use Labsys\GaiaAuth\Contracts\ShakaAuthRoleInterface;
-use Labsys\GaiaAuth\Traits\GaiaAuthRoleTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
-use League\Flysystem\Plugin\PluggableTrait;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class GaiaAuth
 {
-    /**
-     * Laravel application
-     *
-     * @var \Illuminate\Foundation\Application
-     */
     public $app;
-    /**
-     * Create a new confide instance.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return void
-     */
+
+    //
     public function __construct($app)
     {
         $this->app = $app;
     }
+
     /**
-     * Checks if the current user has a role by its name
+     * 角色检验,参数二支持全匹配、部分匹配检验
      *
-     * @param string $name Role name.
-     *
+     * @param  array|int|string $role
+     * @param  bool  $requireAll 全匹配、半匹配
      * @return bool
      */
     public function hasRole($role, $requireAll = false)
@@ -48,11 +35,12 @@ class GaiaAuth
         }
         return false;
     }
+
     /**
-     * Check if the current user has a permission by its name
+     * 权限校验,参数二支持全匹配、部分匹配检验
      *
-     * @param string $permission Permission string.
-     *
+     * @param  array|int|string  $permission
+     * @param  bool  $requireAll 全匹配、半匹配
      * @return bool
      */
     public function canDo($permission, $requireAll = false)
@@ -62,11 +50,12 @@ class GaiaAuth
         }
         return false;
     }
-    /**
-     * Get the currently authenticated user or null.
+
+    /*
+     * 获取当前认证用户的Eloquent实例
      *
-     * @return Illuminate\Auth\UserInterface|null
-     */
+     * @return \Illuminate\Database\Eloquent\Model
+    */
     public function user()
     {
         return $this->app->auth->user();

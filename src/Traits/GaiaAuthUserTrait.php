@@ -8,26 +8,32 @@ use APP\Models\Role;
 use Illuminate\Support\Facades\Config;
 use Exception;
 
-/**
- * This file is part of Entrust,
- * a role & permission management solution for Laravel.
- *
- * @license MIT
- * @package Zizaco\Entrust
- */
-
 
 trait GaiaAuthUserTrait
 {
     /*
+     * 角色列表
+     * @param array $fieldArr 要筛选的字段
+     * return array
+     */
+    public function roleList($fieldArr=[])
+    {
+        $select = array_merge(['id','pinyin','label'],$fieldArr);
+        $role_list = $this->roles()->select($select)->get()->toArray();
+        $role_list = array_column($role_list,null,'id');
+        return $role_list;
+    }
+
+    /*
      * 校验是否有某个角色或全部角色
-     * @param array|int
-     * @param bool
+     *
+     * @param array|int|string $role
+     * @param  bool  $requireAll 全匹配、半匹配
      * return bool
      */
-    public function hasRole($attr, $requireAll = false)
+    public function hasRole($role, $requireAll = false)
     {
-        $check_arr = is_array($attr) ? $attr : [$attr];
+        $check_arr = is_array($role) ? $role : [$role];
         $role_list = $this->roleList();
         foreach ($check_arr as $k=>$roleItem) {
             if(is_int($roleItem)) {
@@ -49,76 +55,61 @@ trait GaiaAuthUserTrait
 
     /*
      * 增加角色
-     * @param mixed
-     * return null
+     * @param int $roleId
+     * return bool
+     * @throws \Exception
      */
-    public function attachRole($role)
+    public function attachRole($roleId)
     {
-        if (is_object($role)) {
-            $role = $role->getKey();
-        }elseif (is_array($role)) {
-            $role = $role['id'];
+        if (!is_int($roleId)) {
+            throw new Exception('param roleId must be int type');
         }
 
         $roleIds = array_keys($this->roleList());
-        if(in_array($role,$roleIds)) {
-            throw new Exception('this role id '.$role.' has been added in the role_user table');
+        if(in_array($roleId,$roleIds)) {
+            return true;
         };
 
-        app(Config::get('auth_gaia.role'))->find($role);
-        $this->roles()->attach($role);
-
+        $res = app(Config::get('auth_gaia.role'))->find($roleId);
+        if(empty($res)){
+            throw new Exception('this role id '.$roleId.' is not find in role table');
+        }
+        $this->roles()->attach($roleId);
         return true;
     }
 
     /*
      * 删除角色
-     * @param mixed
-     * return null
+     * @param int $roleId
+     * return bool
+     * @throws \Exception
      */
-    public function detachRole($role)
+    public function detachRole($roleId)
     {
-        if (is_object($role)) {
-            $role = $role->getKey();
-        }elseif (is_array($role)) {
-            $role = $role['id'];
+        if (!is_int($roleId)) {
+            throw new Exception('param roleId must be int type');
         }
 
         $roleIds = array_keys($this->roleList());
-        if(!in_array($role,$roleIds)) {
-            throw new Exception('please make sure the role id '.$role.' in the role_user table');
+        if(!in_array($roleId,$roleIds)) {
+            throw new Exception('please make sure the role id '.$roleId.' in the role_user table');
         };
-        $this->roles()->detach($role);
-
+        $this->roles()->detach($roleId);
         return true;
     }
 
+
+
     /*
-     * 角色列表
-     * @param array
-     * return array
-     */
-    public function roleList()
-    {
-        $select = ['id','pinyin','label'];
-
-        $role_list = $this->roles()->select($select)->get()->toArray();
-        $return_arr = [];
-        foreach($role_list as $role){
-            $return_arr[$role['id']] = ['pinyin'=>$role['pinyin'],'label'=>$role['label']];
-        }
-        return $return_arr;
-    }
-
-    /* 校验是否具备某个权限
+     * 角色权限校验
      * @param int|string|array 支持id或name的单个 或数组形式
      * return bool
      */
-    public function canDo($permission_name)
+    public function canDo($permissionName)
     {
         $role_list = $this->roles()->get();
         foreach($role_list as $role){
-            $chk_res = $role->hasPermission($permission_name);
+            $chk_res = $role->hasPermission($permissionName);
             if($chk_res){
                 return true;
             }
@@ -127,8 +118,10 @@ trait GaiaAuthUserTrait
     }
 
     /*
-     * @select 显示的字段
-     * @rank是否树形排序
+     * 左侧的菜单树(支持无限极递归树)
+     * @param array select 要筛选的字段
+     * @param bool rank true则返回排序后的树形多维数组,false则返回一维数组
+     * return array
     */
     public function menuPermList(Array $select=[],$rank=true){
         $allPermArr = $this->allPerm($select);
@@ -150,13 +143,11 @@ trait GaiaAuthUserTrait
         return $menuPermArr;
     }
 
-    //用户全部角色
-    private function roles()
-    {
-        return $this->belongsToMany(Config::get('auth_gaia.role'), Config::get('auth_gaia.role_user_table'), 'user_id', 'role_id');
-    }
-
-    //返回全部权限数据
+    /*
+    * 角色全部权限,设为private防止滥用,避免用户与权限直接挂钩,推荐通过角色挂钩
+    * @param array $select 要筛选的字段
+    * return array 一维数组
+    */
     private function allPerm(Array $select=[]){
         $roleList = $this->roles()->select(['*'])->get()->all();
         $allRolesPermArr = [];
@@ -176,6 +167,12 @@ trait GaiaAuthUserTrait
         $allPermArr = array_values($oneDimensionalMenu);
 
         return $allPermArr;
+    }
+
+    //用户全部角色
+    private function roles()
+    {
+        return $this->belongsToMany(Config::get('auth_gaia.role'), Config::get('auth_gaia.role_user_table'), 'user_id', 'role_id');
     }
 
     //菜单进行目录树整理
