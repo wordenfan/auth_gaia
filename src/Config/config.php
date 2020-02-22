@@ -1,8 +1,8 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: benchao
- * Date: 16/11/22
+ * User: wordenfan
+ * Date: 19/11/22
  */
 return [
     //基础表名
@@ -13,7 +13,7 @@ return [
     'role_permission_table' => 'auth_role_permission',
 
     //Eloquent实例
-    'user' => 'App\Models\Admin\Admin',
+    'user' => 'App\Models\Admin\AdminUser',
     'role' => 'App\Models\Admin\Auth\AuthRole',
     'permission' => 'App\Models\Admin\Auth\AuthPermission',
 
