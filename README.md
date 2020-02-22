@@ -10,9 +10,6 @@ Labsys Gaia权限管理系统，参考了[Zizaco/entrust](https://github.com/Ziz
 composer require "labsys/auth-gaia:1.2.x-dev"
 #包更新
 composer update "labsys/auth-gaia"
-
-#配置Provider 打开config/app.php
-Labsys\GaiaAuth\Providers\GaiaAuthServiceProvider::class,
 ```
 ## 使用说明
 1：生成config文件及执行文件
