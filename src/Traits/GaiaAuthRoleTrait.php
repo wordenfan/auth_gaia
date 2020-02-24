@@ -83,7 +83,7 @@ trait GaiaAuthRoleTrait
     */
     private function permissionValidate($permission){
         $permArr = is_array($permission) ? $permission : [$permission];
-        $filterArr = array_map(function($item){return is_int($item) ? $item : '';},$permission);
+        $filterArr = array_map(function($item){return is_int($item) ? $item : '';},$permArr);
         if( count(array_filter($filterArr)) != count($permArr) ){
             throw new \Exception('the param must be integer');
         }
