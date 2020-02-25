@@ -97,12 +97,34 @@ trait GaiaAuthRoleTrait
     }
 
     /*
-     * 总权限列表
+     * 角色的权限列表
+     *
+     * @param array $select 要筛选的字段
+     * return array
     */
-    public function permissionList(array $select=[])
+    public function permissionList(array $select=[],$where=[])
     {
         $select = array_merge($select,['id','pinyin']);
-        $permission_list = $this->perms()->select($select)->get()->toArray();
+        $db = $this->perms()->select($select);
+        foreach($where as $k=>$v){
+            if(!empty($v) && is_array($v)){
+                if($v[0] == 'like') {
+                    $db = $db->where($k, 'like', '%' . $v[1] . '%');
+                }elseif(in_array($v[0],['>','<','>=','<='],true)) {
+                    $db = $db->where($k, $v[0],$v[1]);
+                }elseif($v[0] == 'between'){
+                    $db = $db->whereBetween($k,$v[1]);
+                }else{
+                    $db = $db->whereIn($k,$v);
+                }
+            }elseif(is_object($v) && get_class($v) == 'Closure'){
+                $db = $db->where($v);
+            }else if(is_string($v) || is_int($v)){
+                $db = $db->where(array($k=>$v));
+            }
+        }
+
+        $permission_list = $db->get()->toArray();
         $return_arr = array_column($permission_list,null,'id');
         return $return_arr;
     }
