@@ -67,7 +67,7 @@ $res2 = $user->hasRole([1,2],true);//参数二[选填],true为全匹配
 $res3 = $user->attachRole([4]);//支持int或数组查询
 $res4 = $user->detachRole(4);//支持int或数组查询
 $res5 = $user->canDo([11,'search_bt']);//id或pinyin混合查找
-$res6 = $user->menuPermList();//参数一[选填]要筛选的字段,参数二[选填]是否需树形排序
+$res6 = $user->menuPermList(['id','type','status']);//参数一[选填]要筛选的字段,参数二[选填]是否需树形排序
 ```
 role的调用方法
 ```bash
@@ -76,5 +76,11 @@ $res2 = $role->userList(['email']);//参数一[选填]要筛选的字段
 $res3 = $role->hasPermission(['shopad',14]);//支持数组批量查询,仅全匹配才返回true
 $res4 = $role->attachPermission([43,45]);//支持单个或数组批量添加
 $res5 = $role->detachPermission(43);//支持单个或数组批量添加
-$res6 = $role->permissionList();//返回一维数组
+$fields = ['id','type','status'];
+$condition = [
+    'status'=>1,
+    'type' => ['<=',10],
+];
+$res6 = $role->permissionList($fields,$condition);//返回一维数组
+
 ```
