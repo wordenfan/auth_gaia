@@ -102,17 +102,22 @@ trait GaiaAuthUserTrait
 
     /*
      * 角色权限校验
-     * @param int|string|array 支持id或name的单个 或数组形式
+     * @param int|string|array $permission 支持id或name的单个或数组形式
      * return bool
      */
-    public function canDo($permissionName)
+    public function canDo($permission)
     {
         $role_list = $this->roles()->get();
+        $perm_id = [];
+        $perm_py = [];
         foreach($role_list as $role){
-            $chk_res = $role->hasPermission($permissionName);
-            if($chk_res){
-                return true;
-            }
+            $role_permission_list = $role->permissionList();
+            $perm_id = array_merge($perm_id,array_column($role_permission_list,'id'));
+            $perm_py = array_merge($perm_py,array_column($role_permission_list,'pinyin'));
+        }
+        $all_perm = array_merge($perm_id,$perm_py);
+        if(empty(array_diff($permission,$all_perm))){
+            return true;
         }
         return false;
     }
