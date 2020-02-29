@@ -107,6 +107,7 @@ trait GaiaAuthUserTrait
      */
     public function canDo($permission)
     {
+        $perm_arr = is_array($permission) ? $permission : [$permission];
         $role_list = $this->roles()->get();
         $perm_id = [];
         $perm_py = [];
@@ -116,7 +117,7 @@ trait GaiaAuthUserTrait
             $perm_py = array_merge($perm_py,array_column($role_permission_list,'pinyin'));
         }
         $all_perm = array_merge($perm_id,$perm_py);
-        if(empty(array_diff($permission,$all_perm))){
+        if(empty(array_diff($perm_arr,$all_perm))){
             return true;
         }
         return false;

@@ -7,7 +7,7 @@
 #
 # Host: rm-m5e38z8q4vs17bang.mysql.rds.aliyuncs.com (MySQL 5.7.20-log)
 # Database: Internet_hos
-# Generation Time: 2020-02-22 14:35:00 +0000
+# Generation Time: 2020-02-29 09:18:55 +0000
 # ************************************************************
 
 
@@ -44,11 +44,11 @@ LOCK TABLES `it_admin_users` WRITE;
 
 INSERT INTO `it_admin_users` (`id`, `name`, `password`, `avatar`, `email`, `status`, `remember_token`, `created_at`, `updated_at`)
 VALUES
-	(1,'lxadmin','$2y$10$bIKAQxUp/PlXwhCy/Q85VuKt88oy7OHhjq.95.VOAj6j.AkmTDEE.','','sssdf@126.com',2,'','2019-09-29 15:32:52','2020-02-21 17:13:55'),
-	(2,'lxkefu','$2y$10$15pHNgl./RjY4YEyfVX7P.IqlvPGSvBhOnTgTwYJg/kfa1fa0yqYO','','kefu@126.com',1,'','2020-02-19 21:49:01','2020-02-21 16:05:25'),
-	(3,'xdadmin','$2y$10$k9p.K9rVf3/ARNq9GFPaB.okU1fIK/Egval9MSQneCWCoFfAod3Xi','','asd@126.com',1,'','2020-02-19 21:51:52','2020-02-21 18:02:42'),
-	(4,'rzadmin','$2y$10$p5MgmsKe2T77azP0W5DTIehqkTZuY8IPYyKT.voWgK0ckiSVlNnoy','','asdm@126.com',1,'','2020-02-19 21:51:52','2020-02-21 20:05:53'),
-	(5,'11d','$2y$10$ucPgBX1YJIHJuiFR4Kh0wOO71I9LUu158SnHEotl0Q.XaMtUJux9O','','1@163.com',1,'','2020-02-21 17:42:26','2020-02-21 18:41:04');
+	(1,'lxadmin','$2y$10$eZ.LlwYE.v9PiZEAYa/FOu7MvTZAwHohHDO0MLwINbKv2D4kYRzie','','lxadmin@labsys.cn',1,'',NULL,NULL),
+	(2,'lxkefu','$2y$10$LI9qxnQEk6UaZ2CddFMxpuZitb8.Hu2NO5gTPlRe9OQLz2hDxKjpa','','lxkefu@labsys.cn',1,'',NULL,NULL),
+	(3,'xdadmin','$2y$10$T6tD50zrn5Z8K/2dg9p8O.SoL3P9wc99fKtm3kfJkHAambXc8wyYC','','xdadmin@labsys.cn',1,'',NULL,NULL),
+	(4,'rzadmin','$2y$10$H2bYLZRlQqc709sYzOAp5uzMpUpYY5jG1GflhvJ08C8QuJuMfdth2','','rzadmin@labsys.cn',1,'',NULL,NULL),
+	(5,'ytadmin','$2y$10$Zsu4SeVAE9ghx2todNRzoOdnQo4GLd393ww2Sarm2YcKfaqcgaVki','','ytadmin@labsys.cn',1,'',NULL,NULL);
 
 /*!40000 ALTER TABLE `it_admin_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -82,19 +82,30 @@ LOCK TABLES `it_auth_permissions` WRITE;
 
 INSERT INTO `it_auth_permissions` (`id`, `type`, `pid`, `label`, `pinyin`, `description`, `icon`, `url`, `sort`, `status`, `creator`, `created_at`, `updated_at`)
 VALUES
-	(1,10,0,'明文显示','mingwenxianshi','是否脱敏,勾选则显示明文','','#',1,1,0,NULL,NULL),
-	(2,20,0,'新都医院','xd_hospital','分配新都医院管理权限','','#',1,1,0,NULL,NULL),
-	(3,20,0,'日照医院','rz_hospital','分配日照医院管理权限','','#',1,1,0,NULL,NULL),
-	(4,20,0,'烟台医院','yt_hospital','分配y烟台医院管理权限','','#',1,1,0,NULL,NULL),
-	(10,1,0,'权限管理','quanxianguanli','一级菜单','','#',1,1,0,NULL,NULL),
-	(11,1,10,'管理员列表','guanliyuanliebiao','二级菜单','','#',1,1,0,NULL,NULL),
-	(12,1,10,'角色列表','jueseliebiao','二级菜单','','#',1,1,0,NULL,NULL),
-	(13,1,10,'节点列表','jiedianliebiao','二级菜单','','#',1,1,0,NULL,NULL),
-	(14,2,11,'禁用启用按钮','forbidden_bt','禁用启用按钮','','#',1,1,0,NULL,NULL),
-	(15,2,11,'指派医院按钮','fenpeiyiyuan_bt','指派医院按钮','','#',2,1,0,NULL,NULL),
-	(16,2,11,'分配权限','fenpeiquanxian_bt','分配权限','','#',3,1,0,NULL,NULL),
-	(17,2,0,'测试','sdfas','sdfasd','','#',1,1,0,NULL,NULL),
-	(18,2,0,'测试2','sdfas2','sdfasd','','#',1,1,0,NULL,NULL);
+	(1,10,0,'明文不脱敏','tuominxianshi','是否脱敏,勾选则显示明文','fa-circle-o','',1,1,0,NULL,NULL),
+	(2,20,0,'新都医院','xd_hospital','分配新都医院管理权限','fa-circle-o','#',2,1,0,NULL,NULL),
+	(3,20,0,'日照医院','rz_hospital','分配日照医院管理权限','fa-circle-o','#',2,1,0,NULL,NULL),
+	(4,20,0,'烟台医院','yt_hospital','分配烟台医院管理权限','fa-circle-o','#',2,1,0,NULL,NULL),
+	(51,1,0,'就诊人管理','jiuzhenrenguanli','','fa-circle-o','',3,1,0,NULL,NULL),
+	(52,1,51,'就诊人列表','jiuzhenrenliebiao','','fa-circle-o','',3,1,0,NULL,NULL),
+	(53,1,51,'就诊人统计','jiuzhenrentongji','','fa-circle-o','',3,1,0,NULL,NULL),
+	(71,1,0,'医院管理','yiyuanguanli','','fa-circle-o','',3,1,0,NULL,NULL),
+	(72,1,71,'医院列表','yiyuanliebiao','','fa-circle-o','',3,1,0,NULL,NULL),
+	(73,1,71,'诊室列表','zhenshiliebiao','','fa-circle-o','',3,1,0,NULL,NULL),
+	(74,1,71,'医生列表','yishengliebiao','','fa-circle-o','',3,1,0,NULL,NULL),
+	(75,2,72,'添加','yylb_add_tb','','','#',4,1,0,NULL,NULL),
+	(76,2,72,'添加','zslb_add_tb','','','#',4,1,0,NULL,NULL),
+	(77,2,72,'添加','yslb_add_tb','','','#',4,1,0,NULL,NULL),
+	(91,1,0,'问诊管理','wenzhenguanli','','fa-circle-o','',3,1,0,NULL,NULL),
+	(92,1,91,'问诊列表','wenzhenliebiao','','fa-circle-o','',3,1,0,NULL,NULL),
+	(93,1,91,'电子病历','dianzibingli','','fa-circle-o','',3,1,0,NULL,NULL),
+	(94,2,92,'搜索','wzlb_search_tb','','','#',4,1,0,NULL,NULL),
+	(95,2,93,'搜索','dzbl_search_tb','','','#',4,1,0,NULL,NULL),
+	(111,1,0,'系统管理','xitongguanli','','fa-circle-o','',3,1,0,NULL,NULL),
+	(112,1,111,'操作日志','caozuorizhi','','fa-circle-o','',3,1,0,NULL,NULL),
+	(113,1,111,'管理员列表','guanliyuanliebiao','','fa-circle-o','',3,1,0,NULL,NULL),
+	(114,1,111,'角色管理','jueseguanli','','fa-circle-o','',3,1,0,NULL,NULL),
+	(115,1,111,'节点管理','jiedianguanli','','fa-circle-o','',3,1,0,NULL,NULL);
 
 /*!40000 ALTER TABLE `it_auth_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -123,21 +134,85 @@ VALUES
 	(1,2),
 	(1,3),
 	(1,4),
+	(1,51),
+	(1,52),
+	(1,53),
+	(1,71),
+	(1,72),
+	(1,73),
+	(1,74),
+	(1,75),
+	(1,76),
+	(1,91),
+	(1,92),
+	(1,93),
+	(1,94),
+	(1,95),
+	(1,111),
+	(1,112),
+	(1,113),
+	(1,114),
+	(1,115),
+	(2,1),
+	(2,2),
+	(2,3),
+	(2,4),
+	(2,51),
+	(2,52),
+	(2,53),
+	(2,71),
+	(2,72),
+	(2,73),
+	(2,74),
+	(2,75),
+	(2,76),
+	(2,91),
+	(2,92),
+	(2,93),
+	(2,94),
+	(2,95),
+	(3,1),
 	(3,2),
+	(3,51),
+	(3,52),
+	(3,53),
+	(3,71),
+	(3,72),
+	(3,73),
+	(3,74),
+	(3,75),
+	(3,76),
+	(3,91),
+	(3,92),
+	(3,93),
+	(3,94),
+	(3,95),
+	(3,111),
+	(3,112),
+	(3,113),
+	(3,114),
+	(3,115),
+	(4,1),
 	(4,3),
-	(1,10),
-	(1,11),
-	(1,12),
-	(1,13),
-	(1,14),
-	(1,15),
-	(1,16),
-	(5,2),
-	(5,3),
-	(5,1),
-	(5,10),
-	(5,11),
-	(5,14);
+	(4,51),
+	(4,52),
+	(4,53),
+	(4,71),
+	(4,72),
+	(4,73),
+	(4,74),
+	(4,75),
+	(4,76),
+	(4,91),
+	(4,92),
+	(4,93),
+	(4,94),
+	(4,95),
+	(4,111),
+	(4,112),
+	(4,113),
+	(4,114),
+	(4,115);
 
 /*!40000 ALTER TABLE `it_auth_role_permission` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -161,12 +236,8 @@ LOCK TABLES `it_auth_role_user` WRITE;
 INSERT INTO `it_auth_role_user` (`user_id`, `role_id`)
 VALUES
 	(1,1),
-	(1,2),
-	(3,2),
 	(2,2),
-	(5,2),
-	(5,1),
-	(3,4),
+	(3,3),
 	(4,4);
 
 /*!40000 ALTER TABLE `it_auth_role_user` ENABLE KEYS */;
@@ -196,11 +267,11 @@ LOCK TABLES `it_auth_roles` WRITE;
 
 INSERT INTO `it_auth_roles` (`id`, `label`, `pinyin`, `description`, `status`, `created_at`, `updated_at`, `deleted_at`)
 VALUES
-	(1,'超级管理员','admin','超级管理员',1,NULL,NULL,NULL),
-	(2,'客服','kefu','脱敏加星',1,NULL,NULL,NULL),
-	(3,'新都管理员','xdkq_admin','新都管理员',1,NULL,NULL,NULL),
-	(4,'日照管理员','rzkq_admin','日照口腔管理员',1,NULL,NULL,NULL),
-	(5,'测试管理11员','ceshi','测试描述',1,'2020-02-22 15:55:33','2020-02-22 15:59:05',NULL);
+	(1,'超级管理员','chaojiguanliyuan','所有权限',1,NULL,NULL,NULL),
+	(2,'测试客服','ceshiguanliyuan','测试权限',1,NULL,NULL,NULL),
+	(3,'新都管理员','xinduguanliyuan','新都管理员',1,NULL,NULL,NULL),
+	(4,'日照管理员','rizhaoguanliyuan','日照管理员',1,NULL,NULL,NULL),
+	(5,'烟台管理员','yantaiguanliyuan','烟台管理员',1,NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `it_auth_roles` ENABLE KEYS */;
 UNLOCK TABLES;
