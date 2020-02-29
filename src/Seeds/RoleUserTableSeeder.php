@@ -15,9 +15,13 @@ class RoleUserTableSeeder extends Seeder
         $menuArr = [
             ['user_id'=>1,'role_id'=>1],
             ['user_id'=>2,'role_id'=>2],
+            ['user_id'=>3,'role_id'=>3],
+            ['user_id'=>4,'role_id'=>4],
         ];
 
-        // DB::table(self::TableName)->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DB::table($tableName)->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
         foreach($menuArr as $k => $item){
             DB::table($tableName)->insert([
                 'user_id' => $item['user_id'],

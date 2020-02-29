@@ -17,11 +17,14 @@ class PermissionBaseTableSeeder extends Seeder
     {
         Model::unguard();
 
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         $this->call(AdminUserTableSeeder::class);
         $this->call(PermissionTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(RolePermissionTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         Model::reguard();
     }
