@@ -21,6 +21,7 @@ class CreateRoleTable extends Migration
             $table->string('description',60)->comment('概要');
             $table->tinyInteger('status')->default(1)->comment('状态1正常2禁用');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

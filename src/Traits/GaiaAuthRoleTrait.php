@@ -9,8 +9,6 @@ use APP\Models\PermissionMenu;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Backend\Auth\AuthPermission;
-
 /**
  * This file is part of Entrust,
  * a role & permission management solution for Laravel.
