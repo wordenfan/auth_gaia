@@ -12,6 +12,8 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
+        //type:（1:页面,2:按钮,10:数据权限,20:所属医院,200:平湖)
+
         $tableName = Config::get('auth_gaia.table_prefix').Config::get('auth_gaia.permissions_table');
 
         $menuArr = [
@@ -45,6 +47,27 @@ class PermissionTableSeeder extends Seeder
             ['id'=>113,'pid'=>111,'type'=>1,'pinyin'=>'guanliyuanliebiao','label'=>'管理员列表','description'=>'','url'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
             ['id'=>114,'pid'=>111,'type'=>1,'pinyin'=>'jueseguanli','label'=>'角色管理','description'=>'','url'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
             ['id'=>115,'pid'=>111,'type'=>1,'pinyin'=>'jiedianguanli','label'=>'节点管理','description'=>'','url'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+
+            //========pinghu,id介于(200,300)================================
+            //
+            ['id'=>201,'pid'=>0,'type'=>200,'pinyin'=>'shangpinguanli','label'=>'商品管理','url'=>'','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>202,'pid'=>201,'type'=>200,'pinyin'=>'shangpintianjia','label'=>'商品添加','url'=>'/v1/goods/add','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>203,'pid'=>201,'type'=>200,'pinyin'=>'shangpinchaxun','label'=>'商品查询','url'=>'/v1/goods/query','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>204,'pid'=>201,'type'=>200,'pinyin'=>'shangpinliebiao','label'=>'商品列表','url'=>'/v1/goods/list','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>205,'pid'=>201,'type'=>200,'pinyin'=>'shangpinbianji','label'=>'商品编辑','url'=>'/v1/goods/update','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>206,'pid'=>201,'type'=>200,'pinyin'=>'shangpinfenleitianjia','label'=>'商品分类添加','url'=>'/v1/goods/cate/add','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>207,'pid'=>201,'type'=>200,'pinyin'=>'shangpinfenleichaxun','label'=>'商品分类查询','url'=>'/v1/goods/cate/query','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>208,'pid'=>201,'type'=>200,'pinyin'=>'shangpinfenleiliebiao','label'=>'商品分类列表','url'=>'/v1/goods/cate/list','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            //
+            ['id'=>211,'pid'=>0,'type'=>200,'pinyin'=>'dingdanguanli','label'=>'订单管理','url'=>'','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>212,'pid'=>211,'type'=>200,'pinyin'=>'dingdantianjia','label'=>'订单添加','url'=>'/v1/order/add','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>213,'pid'=>211,'type'=>200,'pinyin'=>'dingdanchaxun','label'=>'订单查询','url'=>'/v1/order/query','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>214,'pid'=>211,'type'=>200,'pinyin'=>'dingdanliebiao','label'=>'订单列表','url'=>'/v1/order/list','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>215,'pid'=>211,'type'=>200,'pinyin'=>'dingdangengxin','label'=>'订单更新','url'=>'/v1/order/update','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            //
+            ['id'=>221,'pid'=>0,'type'=>200,'pinyin'=>'wuliuguanli','label'=>'物流管理','url'=>'','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>222,'pid'=>221,'type'=>200,'pinyin'=>'wuliugongsichaxun','label'=>'物流公司查询','url'=>'/v1/express/query','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
+            ['id'=>223,'pid'=>221,'type'=>200,'pinyin'=>'wuliugongsiliebiao','label'=>'物流公司列表','url'=>'/v1/express/list','description'=>'','icon'=>'fa-circle-o','sort'=>3,'status'=>1],
 
         ];
 
